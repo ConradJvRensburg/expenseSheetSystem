@@ -9,7 +9,7 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/toets")
+        "/"(view:"/landing")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

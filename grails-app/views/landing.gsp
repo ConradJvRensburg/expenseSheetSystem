@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Dit Werk actually</title>
+    <title>Landing Page</title>
 </head>
 
 <body>
-    <h1>Sit naam hier</h1>
+    <h1>Please insert your name</h1>
     <input type="text" id="names">
     <input type="button" id="submit" value="Submit">
 </body>
