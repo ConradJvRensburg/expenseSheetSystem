@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <h1>Please insert your name</h1>
-    <input type="text" id="names">
-    <input type="button" id="submit" value="Submit">
+    <h1>First time user?</h1>
+    <g:link controller="landingPage" action="findUser">No</g:link>
+    <g:link controller="users" action="create">Yes</g:link>
 </body>
 </html>

@@ -51,7 +51,7 @@
 
 <div id="content" role="main">
     <section class="row colset-2-its">
-        <h1>Welcome to Grails</h1>
+    <a href="${createLink(uri: '/')}"><h1>Go to Login</h1></a><br><br>
 
         <p>
             Congratulations, you have successfully started your first Grails application! At the moment
@@ -69,6 +69,8 @@
                     </li>
                 </g:each>
             </ul>
+            <h2>New Transaction</h2>
+            <g:link controller="transactions" action="newTransactions">New Transaction</g:link>
         </div>
     </section>
 </div>
