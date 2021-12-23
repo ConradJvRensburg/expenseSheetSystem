@@ -8,10 +8,54 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>Show user transactions</title>
 </head>
 
-<body>
+<style>
+    table{
+        border: 3px solid black;
+    }
+    tr{
+        border: 3px solid black;
+    }
 
+    th{
+        border: 2px solid gray;
+    }
+
+    td{
+        border: 2px solid gray;
+    }
+</style>
+
+<body>
+    <g:if test="${toets}">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cost</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Balance</th>
+                    <th>USD</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+        <g:each in="${toets}" status="i" var="userTransaction">
+            <tr>
+                <td>${userTransaction.traID}</td>
+                <td>${userTransaction.traCost}</td>
+                <td>${userTransaction.traDate}</td>
+                <td>${userTransaction.traTime}</td>
+                <td>${userTransaction.traBal}</td>
+                <td>${userTransaction.traUSD}</td>
+                <td>${userTransaction.traUser}</td>
+            </tr>
+        </g:each>
+            </tbody>
+        </table>
+    </g:if>
 </body>
 </html>

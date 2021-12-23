@@ -22,6 +22,7 @@
             <input type="text" id="usernameInput" name="usernameInput" value="${usernameInput}"><br>
             <g:submitButton name="Submit" value="Submit"/>
         </g:form>
+        <a href="${createLink(uri: '/')}"><h3>Return</h3></a><br>
     </div>
 
 </body>

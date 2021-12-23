@@ -71,6 +71,8 @@
             </ul>
             <h2>New Transaction</h2>
             <g:link controller="transactions" action="newTransactions">New Transaction</g:link>
+            <h2>Show User Transactions</h2>
+            <g:link controller="transactions" action="loadUserTransactions">Show Transactions</g:link>
         </div>
     </section>
 </div>

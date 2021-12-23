@@ -23,7 +23,7 @@ class UsersController {
         def username = params.usernameInput
         loggedInUser = String.valueOf(username)
         state = con.createStatement()
-        resSet = state.executeQuery("SELECT username FROM USERS WHERE username='"+loggedInUser+"'")
+        resSet = state.executeQuery("SELECT ID FROM USERS WHERE username='"+loggedInUser+"'")
         if (resSet.next()){
             println(resSet.getString(1))
             uName = resSet.getString(1)

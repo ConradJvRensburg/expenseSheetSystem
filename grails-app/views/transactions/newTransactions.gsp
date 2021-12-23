@@ -21,6 +21,7 @@
             <input type="number" id="cost" name="cost" min="0" step=".01" value="${cost}" required><br>
             <g:submitButton name="Submit" value="Submit"/>
         </g:form>
+        <a href="${createLink(uri: '/logged')}"><h3>Go to Homepage</h3></a><br>
     </div>
 </body>
 </html>

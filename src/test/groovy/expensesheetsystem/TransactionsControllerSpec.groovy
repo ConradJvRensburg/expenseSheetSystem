@@ -6,6 +6,7 @@ import spock.lang.Specification
 class TransactionsControllerSpec extends Specification implements ControllerUnitTest<TransactionsController> {
 
     def setup() {
+
     }
 
     def cleanup() {

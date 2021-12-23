@@ -19,7 +19,7 @@
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
             <f:table collection="${transactionsList}" />
-
+            <p>${transactionsList}</p>
             <div class="pagination">
                 <g:paginate total="${transactionsCount ?: 0}" />
             </div>
