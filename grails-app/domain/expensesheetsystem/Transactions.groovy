@@ -1,5 +1,6 @@
 package expensesheetsystem
 
+//domain class for transactions
 class Transactions {
     Double transactionZARcost
     String transactionDate
@@ -8,7 +9,7 @@ class Transactions {
     Double transientCost
     Users user
 
-    static constraints = {
+    static constraints = { //sets domain class constraints
         transactionZARcost blank: false, unique: false
         transactionDate blank: false, unique: false
         transactionTime blank: false, unique: false
@@ -17,17 +18,12 @@ class Transactions {
 
     }
 
-    static belongsTo = [user: Users]
+    static belongsTo = [user: Users] //creates relationship with users domain class
 
-    static mapping = {
+    static mapping = { //maps domain class values
         table 'TRANSACTIONS'
-        id column: 'ID', generator: 'sequence', params: [sequence:'tab_transactions_seq']
-//        transactionZARcost column: 'transactionZARCost'
-//        transactionDate column: 'transactionDate'
-//        transactionTime column: 'transactionTime'
-//        runningBalance column: 'runningBalance'
-//        transientCost column: 'transientCost'
-        user column: "USERS_ID"
+        id column: 'ID', generator: 'sequence', params: [sequence:'tab_transactions_seq'] //id column for the transactions
+        user column: "USERS_ID" //users foreign key
         version(false)
     }
 }

@@ -103,10 +103,8 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: update
-            url: jdbc:h2:./data/expenseSheetDB;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-#            dbCreate: create-drop
-#            url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE expenseSheetDB
+            dbCreate: update #Updates the datasource rather than creating it each time the application runs
+            url: jdbc:h2:./data/expenseSheetDB;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE #datasource URL
     test:
         dataSource:
             dbCreate: update
