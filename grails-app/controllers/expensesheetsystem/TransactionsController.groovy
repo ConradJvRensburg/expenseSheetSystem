@@ -34,8 +34,8 @@ class TransactionsController {
     def jsonSlurper = new JsonSlurper()
     def object = jsonSlurper.parseText(getRC)
     def transactList = []
-    def transactMap = [:]
-    boolean generated = false
+    def userTransactions = []
+
 
     def newTransactions() {
         def user = session["user"]
@@ -105,85 +105,71 @@ class TransactionsController {
         if (String.valueOf(uID) == "null") {
             redirect(controller: 'landingPage', action: 'findUser')
         } else {
-            [toets:transactList]
-        }
-    }
 
-    def loadUserTransactions() {
-        def uID = session["user"]
-        if (String.valueOf(uID) == "null") {
-            redirect(controller: 'landingPage', action: 'findUser')
-        } else {
             conPool = JdbcConnectionPool.create("jdbc:h2:./data/expenseSheetDB", "sa", "")
             con = conPool.getConnection()
             state = con.createStatement()
             resSet = state.executeQuery("SELECT ID, transactionZARCost, transaction_date, transaction_time, running_balance, transient_cost, USERS_ID FROM TRANSACTIONS WHERE USERS_ID='" + String.valueOf(uID) + "'")
             count = 0
             while (resSet.next()) {
+                def transactMap = [:]
                 transactMap <<   [
-                                    traID:resSet.getString(1),
-                                    traCost:resSet.getString(2),
-                                    traDate:resSet.getString(3),
-                                    traTime:resSet.getString(4),
-                                    traBal:resSet.getString(5),
-                                    traUSD:resSet.getString(6),
-                                    traUser:resSet.getString(7)
-                                ]
-                println("Map"+transactMap)
-                transactList.add(count,transactMap)
+                        traID:resSet.getString(1),
+                        traCost:resSet.getString(2),
+                        traDate:resSet.getString(3),
+                        traTime:resSet.getString(4),
+                        traBal:resSet.getString(5),
+                        traUSD:resSet.getString(6),
+                        traUser:resSet.getString(7)
+                ]
+                if (transactList.size() > 0){
+                    for (int i = 0; i < transactList.size(); i++){
+                        if(!transactList.contains(transactMap)){
+                            transactList.add(transactMap)
+                            def aTransaction = [
+                                                     resSet.getString(1),
+                                                     resSet.getString(2),
+                                                     resSet.getString(3),
+                                                     resSet.getString(4),
+                                                     resSet.getString(5),
+                                                     resSet.getString(6),
+                                                     resSet.getString(7)
+                                                  ]
+                            userTransactions << aTransaction
+                        }
+                    }
+                }else{
+                    transactList.add(transactMap)
+                    def aTransaction = [
+                            resSet.getString(1),
+                            resSet.getString(2),
+                            resSet.getString(3),
+                            resSet.getString(4),
+                            resSet.getString(5),
+                            resSet.getString(6),
+                            resSet.getString(7)
+                    ]
+                    userTransactions << aTransaction
+                }
             }
+
             con.close()
             conPool.dispose()
-            redirect(controller: 'transactions', action: 'showUserTransactions')
+
+            [toets:transactList]
         }
     }
+    def csv = {
+        response.setHeader("Content-disposition", "attachment; filename=userTransactions.csv")
+        def headings = 'ID, transactionZARCost, transaction_date,transaction_time, running_balance, transient_cost, USERS_ID, \n'
+        userTransactions.each {row->
+            row.each {col ->
+                headings +=col + ','
+            }
+            headings = headings[0..-2]
+            headings +='\n'
+        }
 
-
-//    def show(){
-//        def uID = session["user"]
-//        int id = String.valueOf(uID).toInteger()
-//        println(id)
-//        def user = Users.findById(id)
-//
-//        def transactions = Transactions.findAllByUsers(user, [sort:"transactionTime", order:"asc"])
-//
-//        [Users:user, transaction: transactions]
-//        println("new")
-//        println([Users:user, transaction: transactions]
-//     }
-
-
-
-//    def index = {
-//
-//    }
-//
-//    def create = {
-//        println("Cool")
-//    }
-//
-//    def save = {
-//
-//    }
-//
-//    def edit = {
-//
-//    }
-//
-//    def update = {
-//
-//    }
-//
-//    def show = {
-//
-//    }
-//
-//    def list = {
-//
-//    }
-//
-//    def delete = {
-//
-//    }
-
+        render(contentType: 'text/csv', text: headings)
+    }
 }

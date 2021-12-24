@@ -56,6 +56,11 @@
         </g:each>
             </tbody>
         </table>
+        <g:form action="csv" method="post">
+            <div class="buttons">
+                <span class="button"><g:submitButton name="export" action="csv"/></span>
+            </div>
+        </g:form>
     </g:if>
 </body>
 </html>
