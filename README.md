@@ -41,4 +41,12 @@ How to use the application:
   - To export all the transactions of the user to a csv file click on the "export" button, this will download the file to the         device.
     
     
-    
+Optimisations that can be made when 10k users use the application at the same time:
+- Patch any known security vulnerabilities.
+- Make regular backups of user data.
+- Write unit tests.
+- Monitor and handle downtimes, make use of services to send alerts whenever the system goes down.
+- Keep logs to ensure you can track any critical errors.
+- A single CPU core can roughly handle 250 concurrent users, the server will therfore require about 40 cores.
+- Roughly 1GB of RAM is needed to host 75 concurrent users, therefore the server will need at least 134GB RAM.
+- Redis could be used to limit the number of connections to ensure the number does not go over 10k.
