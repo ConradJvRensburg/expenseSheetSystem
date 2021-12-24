@@ -18,6 +18,7 @@ You can also run the application through the command line by going to the direct
 
 How to use the application:
 - The landing page asks the user if they are new or have an account
+
   New Users
     - Will click on "Yes", this will redirect you to a page where you can input your name and balance.
     - Once you have inserted the relevant infromation click on "Create" located at the bottom of the form.
